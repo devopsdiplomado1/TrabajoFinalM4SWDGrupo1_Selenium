@@ -31,7 +31,7 @@ public class Retiro10AfpTest {
         } else if (OS.contains("nix") || OS.contains("nux") || OS.contains("aix")) {
             osType = "linux";
         }
-        String gecko = "./src/main/resources/" + osType + "/" + geckodriver+exType;
+        String gecko = "./src/test/resources/" + osType + "/" + geckodriver+exType;
         System.setProperty("webdriver.chrome.driver", gecko);
 
         driver.manage().window().maximize();
