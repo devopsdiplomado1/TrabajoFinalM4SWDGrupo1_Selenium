@@ -21,8 +21,6 @@ public class Retiro10AfpTest {
 
     @Before
     public void setUp() throws Exception {
-        driver = new ChromeDriver();
-
         if (OS.contains("win")) {
             osType = "win";
             exType = ".exe";
@@ -33,10 +31,12 @@ public class Retiro10AfpTest {
         }
         String gecko = "./src/test/resources/" + osType + "/" + geckodriver+exType;
         System.setProperty("webdriver.chrome.driver", gecko);
-
+        driver = new ChromeDriver();
+        System.out.println("Ruta Webdriver: " + gecko);
         driver.manage().window().maximize();
         String ruta = new File("src/test/java/index.html")
                 .getAbsolutePath();
+        System.out.println("Ruta html: " + ruta);
         driver.get(ruta);
     }
 
