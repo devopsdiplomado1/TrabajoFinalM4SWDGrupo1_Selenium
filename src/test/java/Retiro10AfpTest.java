@@ -31,6 +31,15 @@ public class Retiro10AfpTest {
         }
         String gecko = "./src/test/resources/" + osType + "/" + geckodriver+exType;
         System.out.println("Ruta Webdriver antes de setProperty: " + gecko);
+
+        try {
+            if (OS.contains("mac")) {
+                Process process = Runtime.getRuntime().exec("chmod a+x "+gecko);
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la ejecución del comando shell Mac: " + e.getMessage());
+        }
+
         System.setProperty("webdriver.chrome.driver", gecko);
         driver = new ChromeDriver();
         System.out.println("Ruta Webdriver: " + gecko);
