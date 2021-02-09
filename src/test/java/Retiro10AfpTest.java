@@ -30,6 +30,7 @@ public class Retiro10AfpTest {
             osType = "linux";
         }
         String gecko = "./src/test/resources/" + osType + "/" + geckodriver+exType;
+        System.out.println("Ruta Webdriver antes de setProperty: " + gecko);
         System.setProperty("webdriver.chrome.driver", gecko);
         driver = new ChromeDriver();
         System.out.println("Ruta Webdriver: " + gecko);
