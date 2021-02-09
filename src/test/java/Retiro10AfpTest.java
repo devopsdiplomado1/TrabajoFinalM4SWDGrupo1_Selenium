@@ -7,20 +7,36 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.io.File;
+
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Retiro10AfpTest {
-    private WebDriver driver;
+    public static String OS = System.getProperty("os.name").toLowerCase();
+    public static String geckodriver = "chromedriver";
+    public static String osType = "";
+    public static String exType = "";
+    public static WebDriver driver;
 
     @Before
     public void setUp() throws Exception {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
 
+        if (OS.contains("win")) {
+            osType = "win";
+            exType = ".exe";
+        } else if (OS.contains("mac")) {
+            osType = "mac";
+        } else if (OS.contains("nix") || OS.contains("nux") || OS.contains("aix")) {
+            osType = "linux";
+        }
+        String gecko = "./src/main/resources/" + osType + "/" + geckodriver+exType;
+        System.setProperty("webdriver.chrome.driver", gecko);
+
         driver.manage().window().maximize();
-        String ruta = "file:///D:/Estudios/Diplomado DevOps/Módulo 4/ProyectoLab/TrabajoFinalM4SWDGrupo1/src/main/java/com/devops/dxc/devops/web/index.html";
+        String ruta = new File("src/test/java/index.html")
+                .getAbsolutePath();
         driver.get(ruta);
     }
 
