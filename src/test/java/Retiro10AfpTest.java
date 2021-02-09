@@ -18,6 +18,7 @@ public class Retiro10AfpTest {
     public static String osType = "";
     public static String exType = "";
     public static WebDriver driver;
+    public String prefijo = "";
 
     @Before
     public void setUp() throws Exception {
@@ -26,6 +27,7 @@ public class Retiro10AfpTest {
             exType = ".exe";
         } else if (OS.contains("mac")) {
             osType = "mac";
+            prefijo = "file://";
         } else if (OS.contains("nix") || OS.contains("nux") || OS.contains("aix")) {
             osType = "linux";
         }
@@ -44,8 +46,10 @@ public class Retiro10AfpTest {
         driver = new ChromeDriver();
         System.out.println("Ruta Webdriver: " + gecko);
         driver.manage().window().maximize();
+
         String ruta = new File("src/test/java/index.html")
                 .getAbsolutePath();
+        ruta = prefijo + ruta;
         System.out.println("Ruta html: " + ruta);
         driver.get(ruta);
     }
